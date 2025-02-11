@@ -10,10 +10,10 @@ int main()
     constexpr int screenHeight = 750;
     constexpr int CELL_SIZE = 1;
 
-    InitWindow(screenWidth, screenHeight, "Game of Life");
+    InitWindow(screenWidth, screenHeight, "Mandelbrot Set");
     SetTargetFPS(1);
 
-    Mandelbrot mandelbrot = Mandelbrot{screenHeight / CELL_SIZE, screenWidth / CELL_SIZE, {-3.0, 3.0}, {-3.0, 3.0}};
+    Mandelbrot mandelbrot = Mandelbrot{screenHeight / CELL_SIZE, screenWidth / CELL_SIZE, {-2.5, 1.5}, {-2.0, 2.0}};
 
     while (!WindowShouldClose())
     {
