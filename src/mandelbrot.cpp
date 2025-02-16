@@ -5,6 +5,7 @@
 
 void Mandelbrot::Draw()
 {
+    idx = (idx + 1) % MAX_ITERATIONS;
     for (int x = 0; x < columns; x++)
     {
         for (int y = 0; y < rows; y++)
@@ -12,6 +13,12 @@ void Mandelbrot::Draw()
             DrawRectangle(x, y, 1, 1, CalculateColor(pixel2point(x, y)));
         }
     }
+}
+
+void Mandelbrot::newRange(std::pair<double, double> rr, std::pair<double, double> ir)
+{
+    realRange = rr;
+    imagRange = ir;
 }
 
 std::complex<double> Mandelbrot::pixel2point(int x, int y)
@@ -38,7 +45,7 @@ Color Mandelbrot::CalculateColor(std::complex<double> c)
 
     bool valueFromSet = true;
     int i = 1;
-    while (i < MAX_ITERATIONS - 1 && magnitude[i] < 10)
+    while (i < MAX_ITERATIONS - 1 && magnitude[i] < 2)
     {
         i++;
     }
@@ -51,10 +58,41 @@ Color Mandelbrot::CalculateColor(std::complex<double> c)
     //     std::cout << "Set!" << std::endl;
     // }
 
-    // if (std::abs(z[5]) > std::abs(z[4]) && std::abs(z[4]) > std::abs(z[3]) && std::abs(z[3]) > std::abs(z[2]) && std::abs(z[2]) > std::abs(z[1]) && std::abs(z[1]) > std::abs(z[0])) {
-    //     valueFromSet = false;
-    // }
-    return valueFromSet ? Color{0, 0, 0, 255} : Color{200, 200, 200, 255};
+    if (valueFromSet)
+    {
+        return Color{0, 0, 0, 255};
+    }
+    else
+    {
+        if (magnitude[idx] > 10e90)
+        {
+            return Color{200, 200, 200, 255};
+        }
+        else if (magnitude[idx] > 10e80)
+        {
+            return Color{150, 150, 200, 255};
+        }
+        else if (magnitude[idx] > 10e70)
+        {
+            return Color{100, 100, 200, 255};
+        }
+        else if (magnitude[idx] > 10e60)
+        {
+            return Color{75, 75, 200, 255};
+        }
+        else if (magnitude[idx] > 10e50)
+        {
+            return Color{60, 60, 200, 255};
+        }
+        else if (magnitude[idx] > 10)
+        {
+            return Color{50, 50, 200, 255};
+        }
+        else
+        {
+            return Color{10, 10, 200, 255};
+        }
+    }
 }
 
 std::complex<double> Mandelbrot::calculateZn(std::complex<double> previousZ, std::complex<double> c)

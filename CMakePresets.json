@@ -1,0 +1,20 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "default",
+            "description": "Default build options",
+            "hidden": false,
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
+                "CMAKE_C_COMPILER": "/usr/bin/clang",
+                "CMAKE_CXX_FLAGS": "-std=c++17 -Wall -Wextra -Werror",
+                "CMAKE_C_FLAGS": "-Wall -Wextra -Werror",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+            }
+        }
+    ]
+}
