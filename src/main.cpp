@@ -4,18 +4,17 @@
 
 int main()
 {
-    constexpr Color darkGray = {22, 22, 22, 255};
+    constexpr Color darkGray = { 22, 22, 22, 255 };
 
     constexpr int screenWidth = 750;
     constexpr int screenHeight = 750;
 
-    InitWindow(screenWidth, screenHeight, "Mandelbrot Set");
-    SetTargetFPS(60);
+    InitWindow( screenWidth, screenHeight, "Mandelbrot Set" );
+    SetTargetFPS( 60 );
 
-    Mandelbrot mandelbrot = Mandelbrot{screenHeight, screenWidth, {-2.25, 1.00}, {-1.50, 1.50}};
+    Mandelbrot mandelbrot = Mandelbrot{ screenHeight, screenWidth, {-2.25, 1.00}, {-1.50, 1.50} };
 
-    while (!WindowShouldClose())
-    {
+    while (!WindowShouldClose()) {
         // 1 - Event Handling
         // if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
         //     Vector2 pos =  GetMousePosition();
@@ -29,29 +28,10 @@ int main()
 
         // 3 - Drawing
         BeginDrawing();
-        ClearBackground(darkGray);
+        ClearBackground( darkGray );
         mandelbrot.Draw();
         EndDrawing();
     }
 
     CloseWindow();
 }
-
-// #include "raylib.h"
-
-// int main(void)
-// {
-//     InitWindow(800, 450, "raylib [core] example - basic window");
-
-//     while (!WindowShouldClose())
-//     {
-//         BeginDrawing();
-//             ClearBackground(RAYWHITE);
-//             DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-//         EndDrawing();
-//     }
-
-//     CloseWindow();
-
-//     return 0;
-// }
